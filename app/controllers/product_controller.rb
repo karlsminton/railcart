@@ -22,7 +22,7 @@ class ProductController < ApplicationController
     data = { "sku": params[:sku], "name": params[:name], "url": params[:url], "price": params[:price], "enabled": params[:enabled], "description": params[:description], "stock_qty": params[:stock_qty] }
     product = Product.create(data)
     if product.save
-      redirect_to({ controller: :product, action: :list })
+      redirect_to controller: :product, action: :list
     else
       render action: 'new'
     end

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_210218) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_09_112805) do
+  create_table "addresses", force: :cascade do |t|
+    t.string "house"
+    t.string "street"
+    t.string "postcode"
+    t.string "town"
+    t.string "country"
+    t.integer "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.integer "category_id"
     t.string "name"
@@ -19,6 +31,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_210218) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["url"], name: "index_categories_on_url", unique: true
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.string "phone"
+    t.string "password_digest"
+    t.boolean "enabled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "image_collections", force: :cascade do |t|
@@ -64,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_210218) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "addresses", "customers"
   add_foreign_key "image_collections", "products"
   add_foreign_key "images", "image_collections"
 end

@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # https://guides.rubyonrails.org/routing.html
 
   # Front End Routes
+  # Homepage
   root 'home#index'
+  # Categories
   get '/categories', to: 'category#index'
   get '/category/:url_key', to: 'category#view', as: 'category'
+  # Products
   get '/product/:url_key', to: 'product#view', as: 'product'
+  # Customer
+  get '/customer/account', to: 'customer#account'
+  get '/customer/register', to: 'customer#register'
+  get '/customer/login', to: 'customer#login'
+  get '/customer/logout', to: 'customer#logout'
+  post '/customer/save', to: 'customer#save'
 
   # Admin Routes
   # Generic Admin Controller (might not need all of these)

@@ -1,0 +1,23 @@
+<%= form_with model: @customer, url: customer_save_path do |form| %>
+  <div class="field">
+    <%= form.label :email, "Email Address" %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :password, "Password" %>
+    <%= form.password_field :password %>
+  </div>
+  <div class="field">
+    <%= form.label :firstname, "First Name" %>
+    <%= form.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= form.label :lastname, "Last Name" %>
+    <%= form.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= form.label :phone, "Phone no." %>
+    <%= form.text_field :phone %>
+  </div>
+  <%= form.submit "Submit" %>
+<% end %>
