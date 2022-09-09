@@ -1,0 +1,18 @@
+<div class="product-view-container">
+  <div class="column media">
+    <img src="https://placekitten.com/620/620" alt="product image"/>
+  </div>
+  <div class="column content">
+    <div class="title">
+      <h1><%= @product.name.capitalize %></h1>
+    </div>
+    <div class="detail">
+      <div class="prices">
+        <p class="price">£<%= @product.price %></p>
+      </div>
+      <div class="description">
+        <%= @product.description %>
+      </div>
+    </div>
+  </div>
+</div>

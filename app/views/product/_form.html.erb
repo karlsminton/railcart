@@ -1,0 +1,31 @@
+<%= form_with model: @product, url: admin_product_create_path do |form| %>
+  <div class="field">
+    <%= form.label :name, 'Product Name' %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :sku, 'SKU' %>
+    <%= form.text_field :sku %>
+  </div>
+  <div class="field">
+    <%= form.label :url, 'URL Key' %>
+    <%= form.text_field :url %>
+  </div>
+  <div class="field">
+    <%= form.label :price, 'Price (£)' %>
+    <%= form.text_field :price %>
+  </div>
+  <div class="field">
+    <%= form.label :enabled, 'Is Active' %>
+    <%= form.check_box :enabled %>
+  </div>
+  <div class="field">
+    <%= form.label :description, 'Description' %>
+    <%= form.text_area :description %>
+  </div>
+  <div class="field">
+    <%= form.label :stock_qty, 'Stock Available' %>
+    <%= form.text_field :stock_qty %>
+  </div>
+  <%= form.submit %>
+<% end %>
