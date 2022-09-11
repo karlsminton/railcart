@@ -1,0 +1,18 @@
+<%
+  def map_alerts(type)
+    types = {
+      'notice': 'uk-alert-success',
+      'alert': 'uk-alert-warning',
+      'default': 'uk-alert-primary'
+    }
+    types[type.to_sym] || types[:default]
+  end
+%>
+<div class="messages">
+  <% flash.each do |msg| %>
+    <div class="message uk-alert <%= map_alerts(msg[0]) %>" uk-alert>
+      <a class="uk-alert-close uk-icon uk-close" uk-close=""></a>
+      <%= msg[1] %>
+    </div>
+  <% end %>
+</div>

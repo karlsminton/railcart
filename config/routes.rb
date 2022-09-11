@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/customer/login', to: 'customer#login'
   get '/customer/logout', to: 'customer#logout'
   post '/customer/save', to: 'customer#save'
+  post '/customer/signin', to: 'customer#signin'
 
   # Admin Routes
   # Generic Admin Controller (might not need all of these)

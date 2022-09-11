@@ -74,3 +74,5 @@ end
 gem "rubocop", "~> 1.36"
 
 gem "bcrypt", "~> 3.1"
+
+gem "uuid", "~> 2.3"

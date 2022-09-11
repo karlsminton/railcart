@@ -12,9 +12,13 @@
   </head>
 
   <body>
-    <header>
+    <header class="uk-container">
         <%= render 'partials/nav' %>
     </header>
-    <%= yield %>
+    <main class="uk-container">
+      <%= render 'partials/flash' %>
+      <%= yield %>
+    </main>
+    <%= render 'partials/debugging' %>
   </body>
 </html>

@@ -1,0 +1,12 @@
+<h1>Log in to your account</h1>
+<%= form_with url: customer_signin_path do |form| %>
+  <div class="field">
+    <%= form.label :email, "Email" %>
+    <%= form.text_field :email %>
+  </div>
+  <div class="field">
+    <%= form.label :password, "Password" %>
+    <%= form.password_field :password %>
+  </div>
+  <%= form.submit "Log in" %>
+<% end %>
