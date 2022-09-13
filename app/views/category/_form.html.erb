@@ -1,0 +1,15 @@
+<%= form_with model: @category, url: category_save_path do |form| %>
+  <div class="field">
+    <%= form.label :name, 'Name' %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :url, 'URL Key' %>
+    <%= form.text_field :url %>
+  </div>
+  <div class="field">
+    <%= form.label :description, 'Description' %>
+    <%= form.text_area :description %>
+  </div>
+  <%= form.submit "Save" %>
+<% end %>
