@@ -3,8 +3,10 @@
 # class CustomerController handles registration, login, logout and update
 class CustomerController < ApplicationController
   def account
-    # TODO: change this to load from cookies / sessions
     @customer = Customer.find(session[:user])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = 'Not logged in.'
+    redirect_to action: :login
   end
 
   def register
@@ -12,12 +14,12 @@ class CustomerController < ApplicationController
   end
 
   def save
-    # TODO: fix params extraction error
-    customer = Customer.new({ 'id': params[:id], 'email': params[:email], 'password': params[:password], 'firstname': params[:firstname], 'lastname': params[:lastname], 'phone': params[:phone], 'enabled': true })
+    customer = Customer.new(customer_params)
     if customer.save
-      create_session
+      session[:user] = customer.id
       redirect_to action: :account
     else
+      flash.alert = customer.errors.full_messages
       render action: 'register'
     end
   end
@@ -28,9 +30,9 @@ class CustomerController < ApplicationController
   # @note signin is the post action of login (a page)
   def signin
     begin
-      create_session
+      authenticate
       act = :account
-      flash.notice = 'Successfully logged in'
+      flash.notice = 'You\'ve logged in successfully.'
     rescue StandardError => e
       act = :login
       flash.alert = e.message
@@ -40,22 +42,22 @@ class CustomerController < ApplicationController
 
   def logout
     session[:user] = nil
+    flash[:notice] = 'You\'ve logged out successfully.'
     redirect_to action: :login
   end
 
   private
 
-  def create_session
-    if session[:user].nil?
-      user = Customer.find_by(email: params[:email], password_digest: params[:password])
-      return session[:user] = user.id unless user.nil?
-      raise StandardError, 'No such user exists.'
-    else
-      raise StandardError, 'User already logged in.'
-    end
+  def authenticate
+    customer = Customer.find_by(email: params[:email])
+    raise StandardError.new('No account with this email exists.') if customer.nil?
+
+    raise StandardError.new('Incorrect password.') unless customer.authenticate(params[:password])
+
+    session[:user] = customer.id
   end
 
-  def logged_in?
-    session[:user].nil? == false
+  def customer_params
+    params.require(:customer).permit(:id, :email, :password, :firstname, :lastname, :phone)
   end
 end
