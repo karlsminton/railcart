@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Categories
   get '/categories', to: 'category#index'
   get '/category/new', to: 'category#new'
-  get '/category/:url_key', to: 'category#view', as: 'category'
+  get '/category/:url_key', to: 'category#view', as: 'category_view'
   post '/category/save', to: 'category#save'
 
   # Products
