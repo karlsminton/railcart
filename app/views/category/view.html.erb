@@ -2,3 +2,11 @@
 <div class="content">
   <p><%= @category.description %></p>
 </div>
+<div class="products">
+  <% @category.products.each do |product| %>
+    <div class="product">
+      <p class="name"><%= product.name %></p>
+      <p class="price"><%= product.price %></p>
+    </div>
+  <% end %>
+</div>

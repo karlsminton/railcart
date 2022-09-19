@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# class ProductController handles CRUD for products
 class ProductController < ApplicationController
   def view
     # TODO: check if product is enabled before serving
@@ -18,17 +21,43 @@ class ProductController < ApplicationController
   end
 
   def create
-    # TODO: fix this mess - ugly solution to weird param issue - when trying to filter I'm getting invalid params
-    data = { "sku": params[:sku], "name": params[:name], "url": params[:url], "price": params[:price], "enabled": params[:enabled], "description": params[:description], "stock_qty": params[:stock_qty] }
-    product = Product.create(data)
+    product = Product.new(product_params)
+    product.categories = Category.find category_params
     if product.save
       redirect_to controller: :product, action: :list
     else
+      flash[:alert] = product.errors.full_message
       render action: 'new'
+    end
+  end
+
+  def update
+    data = product_params
+    product = Product.find(data[:id])
+    product.categories = Category.find category_params
+    if product.update(data)
+      flash[:notice] = "Product #{product.name} saved successfully."
+      redirect_to action: :list
+    else
+      flash[:alert] = product.errors.full_message
+      render action: 'list'
     end
   end
 
   def edit
     @product = Product.find(params[:id])
+  end
+
+  private
+
+  def product_params
+    params.require(:product).permit(
+      :id, :sku, :name, :url, :price, :enabled, :description, :stock_qty, :image, :categories
+    )
+  end
+
+  def category_params
+    categories = params[:product][:categories][:category]
+    categories.reject(&:empty?)
   end
 end

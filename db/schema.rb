@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_09_112805) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_17_201434) do
   create_table "addresses", force: :cascade do |t|
     t.string "house"
     t.string "street"
@@ -28,9 +28,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_112805) do
     t.string "name"
     t.string "url"
     t.text "description"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_categories_on_product_id"
     t.index ["url"], name: "index_categories_on_url", unique: true
+  end
+
+  create_table "categories_products", id: false, force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "category_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -44,23 +51,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_112805) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "image_collections", force: :cascade do |t|
-    t.integer "collection_id"
-    t.integer "product_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_image_collections_on_product_id"
-  end
-
   create_table "images", force: :cascade do |t|
     t.integer "image_id"
     t.string "name"
     t.string "path"
     t.string "alt_tag"
-    t.integer "image_collection_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["image_collection_id"], name: "index_images_on_image_collection_id"
+    t.index ["product_id"], name: "index_images_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -72,8 +71,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_112805) do
     t.boolean "enabled"
     t.text "description"
     t.integer "stock_qty"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["sku"], name: "index_products_on_sku", unique: true
     t.index ["url"], name: "index_products_on_url", unique: true
   end
@@ -88,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_112805) do
   end
 
   add_foreign_key "addresses", "customers"
-  add_foreign_key "image_collections", "products"
-  add_foreign_key "images", "image_collections"
+  add_foreign_key "categories", "products"
+  add_foreign_key "images", "products"
+  add_foreign_key "products", "categories"
 end

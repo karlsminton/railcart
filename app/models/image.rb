@@ -1,3 +1,3 @@
 class Image < ApplicationRecord
-  belongs_to :image_collection
+  belongs_to :product
 end

@@ -5,6 +5,7 @@ class CreateCategories < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :url
       t.text :description
+      t.references :product, null: true, foreign_key: true
 
       t.timestamps
     end

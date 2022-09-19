@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   post '/category/save', to: 'category#save'
 
   # Products
+  get '/products', to: 'product#list'
+  get '/product/new', to: 'product#new'
+  get '/product/edit/:id', to: 'product#edit', as: 'product_edit'
   get '/product/:url_key', to: 'product#view', as: 'product'
+  post '/product/save', to: 'product#create'
+  patch '/product/save', to: 'product#update'
+  put '/product/save', to: 'product#update'
 
   # Customer
   get '/customer/account', to: 'customer#account'
@@ -30,12 +36,6 @@ Rails.application.routes.draw do
   get '/admin/login', to: 'admin#login'
   get '/admin/create', to: 'admin#create'
   post '/admin/save', to: 'admin#save'
-
-  # Manage Products
-  get '/admin/product', to: 'product#list'
-  get '/admin/product/new', to: 'product#new'
-  get '/admin/product/edit/:id', to: 'product#edit', as: 'admin_product_edit'
-  post '/admin/product/create', to: 'product#create'
 
   # Cart Routes
   post '/cart/add', to: 'cart#add'

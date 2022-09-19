@@ -5,7 +5,7 @@ class CreateImages < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :path
       t.string :alt_tag
-      t.references :image_collection, null: true, foreign_key: true
+      t.references :product, null: true, foreign_key: true
 
       t.timestamps
     end

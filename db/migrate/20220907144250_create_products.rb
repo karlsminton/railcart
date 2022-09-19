@@ -9,6 +9,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.boolean :enabled
       t.text :description
       t.integer :stock_qty
+      t.references :category, null: true, foreign_key: true
 
       t.timestamps
     end
