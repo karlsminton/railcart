@@ -4,10 +4,11 @@
 class ProductController < ApplicationController
   def view
     # TODO: check if product is enabled before serving
-    product = Product.find_by(url: params[:url_key])
+    product = Product.where({ url: params[:url_key], enabled: true }).first
     if product
       @product = product
     else
+      flash[:alert] = 'Product is not available.'
       redirect_back fallback_location: root_path
     end
   end
