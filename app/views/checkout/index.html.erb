@@ -1,0 +1,42 @@
+<h1>Checkout</h1>
+<%= form_with url: checkout_place_path, method: :post do |form| %>
+  <% if session[:user].nil? %>
+    <div class="field">
+      <%= form.label :email, 'Email Address' %>
+      <%= form.text_field :email %>
+    </div>
+    <div class="field">
+      <%= form.label :firstname, 'First Name' %>
+      <%= form.text_field :firstname %>
+    </div>
+    <div class="field">
+      <%= form.label :lastname, 'Last Name' %>
+      <%= form.text_field :lastname %>
+    </div>
+    <div class="field">
+      <%= form.label :phone, 'Phone No.' %>
+      <%= form.text_field :phone %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :house, 'Address Line 1' %>
+    <%= form.text_field :house %>
+  </div>
+  <div class="field">
+    <%= form.label :street, 'Address Line 2' %>
+    <%= form.text_field :street %>
+  </div>
+  <div class="field">
+    <%= form.label :town, 'Town / City' %>
+    <%= form.text_field :town %>
+  </div>
+  <div class="field">
+    <%= form.label :postcode, 'Postcode' %>
+    <%= form.text_field :postcode %>
+  </div>
+  <div class="field">
+    <%= form.label :country, 'Country' %>
+    <%= form.text_field :country %>
+  </div>
+  <%= form.submit 'Place Order' %>
+<% end %>

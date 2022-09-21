@@ -39,4 +39,9 @@ Rails.application.routes.draw do
 
   # Cart Routes
   post '/cart/add', to: 'cart#add'
+  get '/cart/clear', to: 'cart#clear'
+
+  # Checkout Routes
+  get '/checkout', to: 'checkout#index'
+  post '/checkout/place', to: 'checkout#place'
 end
