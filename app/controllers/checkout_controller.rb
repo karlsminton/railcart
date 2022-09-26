@@ -69,9 +69,7 @@ class CheckoutController < ApplicationController
     cart = JSON.parse(cookies[:cart])
     cart.each do |product_id, qty|
       prod = Product.find(product_id)
-      if data[:products].nil?
-        data[:products] = []
-      end
+      data[:products] = [] if data[:products].nil?
       data[:products] << { product: prod, qty: }
       data[:total] += (prod.price * qty)
     end
