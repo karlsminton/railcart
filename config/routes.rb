@@ -42,6 +42,8 @@ Rails.application.routes.draw do
   get '/cart/clear', to: 'cart#clear'
 
   # Checkout Routes
-  get '/checkout', to: 'checkout#index'
-  post '/checkout/place', to: 'checkout#place'
+  get '/checkout', to: 'checkout#index', as: 'checkout_index'
+  get '/checkout/success', to: 'checkout#success', as: 'checkout_success'
+  get '/checkout/success', to: 'checkout#failure', as: 'checkout_failure'
+  post '/checkout/place', to: 'checkout#place', as: 'checkout_place'
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  access_token: MyString
+  app_id: MyString
+  expires_in: 2022-09-22 16:54:50
+  nonce: MyString
+
+two:
+  access_token: MyString
+  app_id: MyString
+  expires_in: 2022-09-22 16:54:50
+  nonce: MyString

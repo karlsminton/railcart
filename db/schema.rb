@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_17_201434) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_22_155450) do
   create_table "addresses", force: :cascade do |t|
     t.string "house"
     t.string "street"
@@ -62,6 +62,28 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_201434) do
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "address_id"
+    t.json "products"
+    t.decimal "cost", precision: 10, scale: 4
+    t.string "paypal_status"
+    t.string "paypal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
+  create_table "paypal_tokens", force: :cascade do |t|
+    t.string "access_token"
+    t.string "app_id"
+    t.datetime "expires_in"
+    t.string "nonce"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "product_id"
     t.string "sku"
@@ -91,5 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_201434) do
   add_foreign_key "addresses", "customers"
   add_foreign_key "categories", "products"
   add_foreign_key "images", "products"
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "customers"
   add_foreign_key "products", "categories"
 end
