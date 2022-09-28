@@ -1,0 +1,71 @@
+<%
+  # TODO: remove ruby / javascript logic and move styles into css
+  items = []
+  total = 0
+  data = JSON.parse(cookies[:cart]) unless cookies[:cart].nil?
+  data = [] if data.nil?
+  data.each do |prod|
+    product = Product.find(prod[0])
+    items << {name: product.name, price: product.price, qty: prod[1]}
+    total += product.price.to_f * prod[1].to_i
+  end
+%>
+<div id="minicart">
+  <div class="minicart__header uk-padding-small uk-text-center">
+    <a href="javascript:void(0);" uk-icon="icon: cart; ratio: 2"></a>
+  </div>
+  <div class="minicart__content">
+    <div class="minicart__container">
+      <div class="minicart__items">
+        <% items.each do |item| %>
+          <div class="minicart__item">
+            <p class="minicart__item__name"><%= item[:name] %></p>
+            <p class="minicart__item__price">£<%= item[:price] %></p>
+            <p class="minicart__item__qty">Qty: <%= item[:qty] %></p>
+          </div>
+        <% end %>
+      </div>
+      <div class="minicart__info">
+        <p><b><%= "Total: £#{total.round(2)}" %></b></p>
+      </div>
+      <div class="minicart__actions">
+        <%= link_to 'Checkout', checkout_index_path %>
+        <%= link_to 'Clear Cart', cart_clear_path %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    jQuery(document).ready(function() {
+        jQuery('.minicart__header').click(function() {
+            let content = jQuery('.minicart__content')
+            height = jQuery('.minicart__container').outerHeight()
+            if (content.height() === 0) {
+                content.height(height)
+            } else {
+                content.height(0)
+            }
+        })
+    })
+</script>
+
+<style>
+  #minicart {
+      position: absolute;
+  }
+  .minicart__content {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.2s;
+      background: #fff;
+      width: 200px;
+      box-shadow: 2px 3px 10px -5px;
+  }
+  .minicart__content.open {
+      height: 100%!important;
+  }
+  .minicart__container {
+      padding: 15px;
+  }
+</style>
