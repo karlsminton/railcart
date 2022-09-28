@@ -3,11 +3,11 @@
 <%= form_with url: customer_signin_path do |form| %>
   <div class="field">
     <%= form.label :email, "Email" %>
-    <%= form.text_field :email %>
+    <%= form.text_field :email, class: 'uk-input' %>
   </div>
   <div class="field">
     <%= form.label :password, "Password" %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: 'uk-input' %>
   </div>
   <%= form.submit "Log in" %>
 <% end %>

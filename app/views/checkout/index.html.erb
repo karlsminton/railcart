@@ -1,42 +1,42 @@
 <h1>Checkout</h1>
 <%= form_with url: checkout_place_path, method: :post do |form| %>
   <% unless @customer %>
-    <div class="field">
+    <div class="field uk-margin-bottom">
       <%= form.label :email, 'Email Address' %>
-      <%= form.text_field :email %>
+      <%= form.text_field :email, class: 'uk-input' %>
     </div>
-    <div class="field">
+    <div class="field uk-margin-bottom">
       <%= form.label :firstname, 'First Name' %>
-      <%= form.text_field :firstname %>
+      <%= form.text_field :firstname, class: 'uk-input' %>
     </div>
-    <div class="field">
+    <div class="field uk-margin-bottom">
       <%= form.label :lastname, 'Last Name' %>
-      <%= form.text_field :lastname %>
+      <%= form.text_field :lastname, class: 'uk-input' %>
     </div>
-    <div class="field">
+    <div class="field uk-margin-bottom">
       <%= form.label :phone, 'Phone No.' %>
-      <%= form.text_field :phone %>
+      <%= form.text_field :phone, class: 'uk-input' %>
     </div>
   <% end %>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :house, 'Address Line 1' %>
-    <%= form.text_field :house %>
+    <%= form.text_field :house, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :street, 'Address Line 2' %>
-    <%= form.text_field :street %>
+    <%= form.text_field :street, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :town, 'Town / City' %>
-    <%= form.text_field :town %>
+    <%= form.text_field :town, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :postcode, 'Postcode' %>
-    <%= form.text_field :postcode %>
+    <%= form.text_field :postcode, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :country, 'Country' %>
-    <%= form.text_field :country %>
+    <%= form.text_field :country, class: 'uk-input' %>
   </div>
-  <%= form.submit 'Place Order' %>
+  <%= form.submit 'Place Order', class: 'uk-button' %>
 <% end %>

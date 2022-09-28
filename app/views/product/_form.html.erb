@@ -1,44 +1,44 @@
 <%= form_for @product, url: product_save_path do |form| %>
   <%= form.hidden_field :id %>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :name, 'Product Name' %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :sku, 'SKU' %>
-    <%= form.text_field :sku %>
+    <%= form.text_field :sku, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :url, 'URL Key' %>
-    <%= form.text_field :url %>
+    <%= form.text_field :url, class: 'uk-input' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :price, 'Price (£)' %>
-    <%= form.text_field :price %>
+    <%= form.text_field :price, class: 'uk-input' %>
   </div>
-  <div class="subsection">
+  <div class="subsection uk-margin-bottom">
     <%= form.fields_for :images do |image| %>
         <% image.file_field :image %>
     <% end %>
   </div>
-  <div class="subsection">
+  <div class="subsection uk-margin-bottom">
     <%= form.fields_for :categories do |c| %>
       <%
-        c.select :category, options_from_collection_for_select(Category.all, :id, :name, {:selected => @product.categories.map(&:id)}), {include_blank: false}, {class: 'multiselect', multiple: true}
+        c.select :category, options_from_collection_for_select(Category.all, :id, :name, {:selected => @product.categories.map(&:id)}), {include_blank: false}, {class: 'multiselect uk-select', multiple: true}
       %>
     <% end %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :enabled, 'Is Active' %>
-    <%= form.check_box :enabled %>
+    <%= form.check_box :enabled, class: 'uk-checkbox' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :description, 'Description' %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, class: 'uk-textarea' %>
   </div>
-  <div class="field">
+  <div class="field uk-margin-bottom">
     <%= form.label :stock_qty, 'Stock Available' %>
-    <%= form.text_field :stock_qty %>
+    <%= form.text_field :stock_qty, class: 'uk-input' %>
   </div>
-  <%= form.submit %>
+  <%= form.submit 'Save Product', class: 'uk-button' %>
 <% end %>

@@ -1,14 +1,14 @@
-<div class="product-view-container">
-  <div class="column media">
+<div class="product-view-container uk-flex">
+  <div class="column media uk-width-1-2 uk-padding-small">
     <img src="https://placekitten.com/620/620" alt="product image"/>
   </div>
-  <div class="column content">
+  <div class="column content uk-width-1-2 uk-padding-small">
     <div class="title">
       <h1><%= @product.name.capitalize %></h1>
     </div>
-    <div class="detail">
+    <div class="detail uk-padding uk-padding-remove-top uk-padding-remove-left uk-padding-remove-right">
       <div class="prices">
-        <p class="price">£<%= @product.price %></p>
+        <p class="price uk-text-large">£<%= @product.price %></p>
       </div>
       <div class="description">
         <%= @product.description %>
