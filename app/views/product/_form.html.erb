@@ -18,7 +18,7 @@
   </div>
   <div class="subsection uk-margin-bottom">
     <%= form.fields_for :images do |image| %>
-        <% image.file_field :image %>
+        <% image.file_field :image, accept: 'image/png, image/gif, image/jpeg' %>
     <% end %>
   </div>
   <div class="subsection uk-margin-bottom">

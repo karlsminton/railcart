@@ -36,6 +36,8 @@ class ProductController < ApplicationController
     data = product_params
     product = Product.find(data[:id])
     product.categories = Category.find category_params
+    # product.images = product_images
+    product.images = product_images
     if product.update(data)
       flash[:notice] = "Product #{product.name} saved successfully."
       redirect_to action: :list
@@ -53,12 +55,23 @@ class ProductController < ApplicationController
 
   def product_params
     params.require(:product).permit(
-      :id, :sku, :name, :url, :price, :enabled, :description, :stock_qty, :image, :categories
+      :id, :sku, :name, :url, :price, :enabled, :description, :stock_qty, :images, :image, :categories
     )
   end
 
   def category_params
     categories = params[:product][:categories][:category]
     categories.reject(&:empty?)
+  end
+
+  def product_images
+    images = []
+    data = params[:product][:images][:image]
+    name = data.original_filename
+    path = File.join('app', 'assets', 'images', 'upload', name)
+    File.open(path, 'wb') { |f| f.write(data.read) }
+    image = Image.new({ name:, path:, alt_tag: name})
+    image.save
+    images.append(image)
   end
 end
