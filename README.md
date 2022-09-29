@@ -20,4 +20,3 @@ An e-commerce system, built in Ruby on Rails, supporting;
 - Create config reader to get PayPal credentials (currently hardcoded)
 - Use rubocop to make methods smaller
 - Remove logic from templates and place into helpers
-- Get product images working correctly (currently using placeholderkitten)

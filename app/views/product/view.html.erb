@@ -1,12 +1,6 @@
 <div class="product-view-container uk-flex">
   <div class="column media uk-width-1-2 uk-padding-small">
-    <%
-      # TODO probably best to transform the path before saving the image model
-      image = @product.images.first
-      path = image.path
-      path['app/assets/images/'] = ''
-    %>
-    <%= image_tag(path) %>
+    <%= image_tag(@product.images.first.path) %>
   </div>
   <div class="column content uk-width-1-2 uk-padding-small">
     <div class="title">

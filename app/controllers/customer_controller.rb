@@ -50,9 +50,9 @@ class CustomerController < ApplicationController
 
   def authenticate
     customer = Customer.find_by(email: params[:email])
-    raise StandardError.new('No account with this email exists.') if customer.nil?
+    raise StandardError, 'No account with this email exists.' if customer.nil?
 
-    raise StandardError.new('Incorrect password.') unless customer.authenticate(params[:password])
+    raise StandardError, 'Incorrect password.' unless customer.authenticate(params[:password])
 
     session[:user] = customer.id
   end
