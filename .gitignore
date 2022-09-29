@@ -35,3 +35,6 @@
 /config/master.key
 
 .idea/
+/app/assets/images/upload/*
+!/app/assets/images/upload/
+!/app/assets/images/upload/.keep
