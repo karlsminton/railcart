@@ -1,5 +1,6 @@
-<h1>List Products</h1>
-<table>
+<h1>Products</h1>
+<%= render 'buttons' %>
+<table class="uk-table uk-table-striped uk-table-responsive">
   <thead>
     <tr>
       <th>ID</th>
@@ -18,7 +19,10 @@
         <td><%= product.sku %></td>
         <td><%= product.price %></td>
         <td><%= product.stock_qty %></td>
-        <td><%= link_to 'Edit', product_edit_path(product) %></td>
+        <td style="max-width: 100px">
+          <%= link_to 'Edit', product_edit_path(product) %>
+          <%= link_to 'Delete', product_delete_path(product), class: 'uk-align-right' %>
+        </td>
       </tr>
     <% end %>
   </tbody>

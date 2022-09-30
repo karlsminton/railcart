@@ -2,6 +2,8 @@
 
 # class ProductController handles CRUD for products
 class ProductController < ApplicationController
+  layout 'admin', only: [:list, :edit, :create, :new]
+
   def view
     # TODO: check if product is enabled before serving
     product = Product.where({ url: params[:url_key], enabled: true }).first
@@ -49,6 +51,13 @@ class ProductController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
+  end
+
+  def delete
+    product = Product.find(params[:id])
+    flash[:notice] = "Deleted product #{product.name}."
+    product.delete
+    redirect_back fallback_location: root_path
   end
 
   private

@@ -1,0 +1,28 @@
+<h1>Customers</h1>
+<%= render 'buttons' %>
+<table class="uk-table uk-table-striped uk-table-responsive">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Enabled</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.id %></td>
+      <td><%= customer.firstname %></td>
+      <td><%= customer.lastname %></td>
+      <td><%= customer.email %></td>
+      <td><%= customer.phone %></td>
+      <td><%= customer.enabled.to_i == 1 ? 'Enabled' : 'Disabled' %></td>
+      <td><%= link_to 'Edit', customer_edit_path(customer.id) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

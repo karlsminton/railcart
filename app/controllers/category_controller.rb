@@ -1,10 +1,16 @@
 class CategoryController < ApplicationController
+  layout 'admin', only: [:index, :new, :edit]
+
   def index
     @categories = Category.all
   end
 
   def new
     @category = Category.new
+  end
+
+  def edit
+    @category = Category.find(params[:id])
   end
 
   def save

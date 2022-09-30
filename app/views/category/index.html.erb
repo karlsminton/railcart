@@ -1,6 +1,26 @@
 <h1>Categories</h1>
-<ul>
-<% @categories.each do |category| %>
-  <li><%= link_to category.name, category_view_path(category.url) %></li>
-<% end %>
-</ul>
+<%= render 'buttons' %>
+<table class="uk-table uk-table-striped uk-table-responsive">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Category Name</th>
+    <th>URL</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+    <tr>
+      <td><%= category.id %></td>
+      <td><%= category.name %></td>
+      <td>
+        <a href="<%= category_view_path(category.url) %>"><%= category.url %></a>
+      </td>
+      <td>
+        <%= link_to 'Edit', category_edit_path(category.id) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

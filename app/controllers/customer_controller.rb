@@ -2,6 +2,12 @@
 
 # class CustomerController handles registration, login, logout and update
 class CustomerController < ApplicationController
+  layout 'admin', only: [:index, :edit, :new]
+
+  def index
+    @customers = Customer.all
+  end
+
   def account
     @customer = Customer.find(session[:user])
   rescue ActiveRecord::RecordNotFound
@@ -11,6 +17,14 @@ class CustomerController < ApplicationController
 
   def register
     @customer = Customer.new
+  end
+
+  def new
+    @customer = Customer.new
+  end
+
+  def edit
+    @customer = Customer.find(params[:id])
   end
 
   def save
