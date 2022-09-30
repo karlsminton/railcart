@@ -11,7 +11,7 @@ class CartController < ApplicationController
       flash[:notice] = "#{params[:qty]} #{prod.name} in basket"
     else
       cart = JSON.parse cookies[:cart]
-      cart[prod.id.to_s] += requested_qty.to_i
+      cart[prod.id.to_s] = requested_qty.to_i + cart[prod.id.to_s].to_i
       cookies[:cart] = JSON.generate(cart)
       flash[:notice] = "#{cart[prod.id.to_s]} #{prod.name} in basket"
     end
