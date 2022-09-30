@@ -62,9 +62,10 @@ class PaypalManagement
   private
 
   def access_token
+    config = paypal_credentials
     headers = {
       'Content-Type' => 'application/x-www-form-urlencoded',
-      'Authorization' => "Basic #{Base64.strict_encode64('AVSE_p4cSWKy008vSSKSCaSfOvAuidWfbvbrXkKtbGcWOzDjgPwep5ls3hUZdDlu7zn_BxYg1KEJWm9-:EBHz7FFp3Ncpr_ND0NBfIvaJ5MDNjq9jwanvEQyR4FdtMtclDHenEhAG6UiTd2Wj0rczc1-W-osG6NK7')}"
+      'Authorization' => "Basic #{Base64.strict_encode64("#{config[:client]}:#{config[:secret]}")}"
     }
     body = { 'grant_type': 'client_credentials' }
     res = make_post('https://api-m.sandbox.paypal.com/v1/oauth2/token', body, headers)
@@ -92,5 +93,10 @@ class PaypalManagement
       req.body = body
     end
     https.request(req)
+  end
+
+  def paypal_credentials
+    values = Rails.application.config_for(:paypal)
+    {client: values[:client], secret: values[:secret]}
   end
 end

@@ -1,4 +1,14 @@
-sandbox:
+production:
+  account: sb-wmgck20984914@business.example.com
+  client: AVSE_p4cSWKy008vSSKSCaSfOvAuidWfbvbrXkKtbGcWOzDjgPwep5ls3hUZdDlu7zn_BxYg1KEJWm9-
+  secret: EBHz7FFp3Ncpr_ND0NBfIvaJ5MDNjq9jwanvEQyR4FdtMtclDHenEhAG6UiTd2Wj0rczc1-W-osG6NK7
+
+development:
+  account: sb-wmgck20984914@business.example.com
+  client: AVSE_p4cSWKy008vSSKSCaSfOvAuidWfbvbrXkKtbGcWOzDjgPwep5ls3hUZdDlu7zn_BxYg1KEJWm9-
+  secret: EBHz7FFp3Ncpr_ND0NBfIvaJ5MDNjq9jwanvEQyR4FdtMtclDHenEhAG6UiTd2Wj0rczc1-W-osG6NK7
+
+test:
   account: sb-wmgck20984914@business.example.com
   client: AVSE_p4cSWKy008vSSKSCaSfOvAuidWfbvbrXkKtbGcWOzDjgPwep5ls3hUZdDlu7zn_BxYg1KEJWm9-
   secret: EBHz7FFp3Ncpr_ND0NBfIvaJ5MDNjq9jwanvEQyR4FdtMtclDHenEhAG6UiTd2Wj0rczc1-W-osG6NK7
