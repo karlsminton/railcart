@@ -17,6 +17,4 @@ An e-commerce system, built in Ruby on Rails, supporting;
 - Save addresses against orders
 - Restrict access for only admins to create/new methods on controllers
 - Allow users to view their orders on account page
-- Create config reader to get PayPal credentials (currently hardcoded)
-- Use rubocop to make methods smaller
 - Remove logic from templates and place into helpers
